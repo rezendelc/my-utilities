@@ -69,7 +69,7 @@ function select_option {
 echo "Select one option using up/down keys and enter to confirm:"
 echo
 
-options=("Change value in a file" "two" "three")
+options=("Change value in a file" "Selection with default" "Quit")
 
 select_option "${options[@]}"
 choice=$?
@@ -79,10 +79,18 @@ if [ $choice == 0 ]; then
   sed -i -e "s/oldValue/$newValue/" file.txt
 
 elif [ $choice == 1 ]; then
-  echo "Option 2"
+  read -p "Do you want to continue? [y/N]" response
+  case $response in
+    [Yy]*)
+      echo You choose yes!
+      ;;
+    *)
+      echo You choose no!
+      ;;
+  esac
 
 else
-  echo "Option 3"
+  echo "You quitted!"
 
 fi
 
