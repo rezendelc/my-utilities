@@ -69,13 +69,14 @@ function select_option {
 echo "Select one option using up/down keys and enter to confirm:"
 echo
 
-options=("one" "two" "three")
+options=("Change value in a file" "two" "three")
 
 select_option "${options[@]}"
 choice=$?
 
 if [ $choice == 0 ]; then
-  echo "Option 1"
+  read -p "Enter new value: " newValue
+  sed -i -e "s/oldValue/$newValue/" file.txt
 
 elif [ $choice == 1 ]; then
   echo "Option 2"
