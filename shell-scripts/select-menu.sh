@@ -69,7 +69,7 @@ function select_option {
 echo "Select one option using up/down keys and enter to confirm:"
 echo
 
-options=("Change value in a file" "Selection with default" "Quit")
+options=("Change value in a file" "Selection with default" "Git clone from repo" "Quit")
 
 select_option "${options[@]}"
 choice=$?
@@ -88,6 +88,9 @@ elif [ $choice == 1 ]; then
       echo You choose no!
       ;;
   esac
+
+elif [ $choice == 2 ]; then 
+  git clone --single-branch --depth 1 https://<USERNAME>:<PAC>@github.com/<USERNAME>/<REPO>
 
 else
   echo "You quitted!"
