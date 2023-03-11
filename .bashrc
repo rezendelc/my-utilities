@@ -60,19 +60,19 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-TIME="[\e[38;5;33m\t\e[m]"
-USERNAME="\e[38;5;46m\u\e[m"
-AT="\e[38;5;46m@\e[m"
-HOSTNAME="\e[38;5;46m\h\e[m"
-WORKDIR="\e[38;5;51m\w\e[m"
-GITBRANCH="\e[1;38;5;201m\$(parse_git_branch)\e[m"
-DOLLAR="$ "
+TIME="[\[\e[38;5;33m\]\t\[\e[m]\]"
+USERNAME="\[\e[38;5;46m\]\u\[\e[m\]"
+AT="\[\e[38;5;46m\]@\[\e[m\]"
+HOSTNAME="\[\e[38;5;46m\]\h\[\e[m\]"
+WORKDIR="\[\e[38;5;51m\]\w\[\e[m\]"
+GITBRANCH="\[\e[1;38;5;201m\]\$(parse_git_branch)\[\e[m\]"
+DOLLAR="\$ "
 
 if [ "$color_prompt" = yes ]; then
     PS1="${debian_chroot:+($debian_chroot)}${TIME} ${USERNAME}${AT}${HOSTNAME} ${WORKDIR}${GITBRANCH} ${DOLLAR}"
     # PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 else
-    PS1="${debian_chroot:+($debian_chroot)}[\t] \u@\h:\w \$(parse_git_branch) \$ "
+    PS1="${debian_chroot:+($debian_chroot)} \u@\h:\w\$(parse_git_branch) \$ "
     # PS1="${debian_chroot:+($debian_chroot)}\u@\h:\w \$ "
 fi
 unset color_prompt force_color_prompt
